@@ -3,30 +3,39 @@ const calciScreen = document.querySelector('.calci-screen');
 const operators = document.querySelectorAll(".operator");
 const allClear = document.querySelector('.all-clear');
 const equalBtn = document.querySelector('.equal-sign');
-let currentInput = '0';
-let calculationOperator = '';
+const percentageBtn = document.querySelector('.percentage');
+
+let expr = '';
 
 equalBtn.addEventListener('click', () =>{
-    let res = eval(calciScreen.value);
+    let res = eval(expr);
     calciScreen.value = res;
 });
 
 allClear.addEventListener('click',() => {
     calciScreen.value = "";
+    expr = '';
+});
+percentageBtn.addEventListener('click',() => {
+    let r = eval(expr);
+    r = r/100;
+    console.log(r);
+    expr = r+'*';
+    calciScreen.value = "";
+
 });
 const updateScreen = (number) =>{
+    expr += number;
     calciScreen.value += number;
 };
 
 numbers.forEach((number) =>{
     number.addEventListener("click",() => {
-        console.log(number.value+" button is pressed.");
         updateScreen(number.value);
     });
 });
 operators.forEach((op) => {
     op.addEventListener("click",() => {
-        console.log(op.value+" Operator is pressed.");
         updateScreen(op.value);
     });
 });
