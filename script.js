@@ -18,10 +18,10 @@ allClear.addEventListener('click',() => {
 });
 percentageBtn.addEventListener('click',() => {
     let r = eval(expr);
+    calciScreen.value = r+"%";
     r = r/100;
     console.log(r);
     expr = r+'*';
-    calciScreen.value = "";
 
 });
 const updateScreen = (number) =>{
